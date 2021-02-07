@@ -8,7 +8,6 @@ const io = require('socket.io')(http);
 // io.listen(server);
 const sequelize = require('./config/database');
 
-
 sequelize.authenticate()
   .then(() => console.log("success"))
   .catch(err => console.log(err));
