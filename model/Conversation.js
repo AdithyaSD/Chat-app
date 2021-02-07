@@ -2,15 +2,17 @@ const Sequelize = require("sequelize");
 const sequelize = require("../config/database");
 
 const Conversation = sequelize.define('conversation', {
-	message: {
-	  type: Sequelize.STRING,
+	user1: {
+	    type: Sequelize.INTEGER,
+	    allowNull: false,
 	},
-	receiver: {
+	user2: {
 		type: Sequelize.INTEGER,
+		allowNull: false,
 	},
-	sender: {
-		type: Sequelize.INTEGER,
+	isDeleted: {
+		type: Sequelize.BOOLEAN,
 	},
 });
 
-module.exports = User;
+module.exports = Conversation;

@@ -5,16 +5,17 @@ const path = require('path');
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
-// io.listen(server);
 const sequelize = require('./config/database');
-
 
 sequelize.authenticate()
   .then(() => console.log("success"))
   .catch(err => console.log(err));
 
-app.get('/', (req, res) => res.send("hii"));
+app.use(express.static(path.join(__dirname, './views')));
+app.use(bodyParser.json());
 app.use('/users', require("./routes/users"));
+app.use('/conversations', require("./routes/conversations"));
+app.use('/messages', require("./routes/messages"));
 
 const users = {};
 io.on('connection', socket => {
